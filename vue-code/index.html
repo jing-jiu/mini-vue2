@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .h1 {
+            color: rgb(0, 255, 179);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="h1">{{arr}}</h1>
+    </div>
+    <script src="dist/umd/vue.js"></script>
+    <script>
+        //  render函数  template el:#app
+        let app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    msg: {
+                        name: 'hxh'
+                    },
+                    arr: [1, 2, 3, 4]
+                }
+            },
+            watch:{
+                'a':{
+                    handler(){
+                        console.log('handler');
+                    },
+                    async:false,
+                    deep:true
+                }
+            },
+            methods: {
+                getList(){
+                    console.log('getList');
+                }
+            },
+            // 1. key value
+            // 2. key 数组
+            // 3. key 执行当前实例上的方法（method）
+            // 4. handler
+            // 5. key 对应一个函数  监听到变化会执行
+            // template:`<h1>hello</h1>`, 
+        })
+    </script>
+</body>
+
+</html>
+<!-- 初始化数据 -> 模板编译 -> render函数 -> 虚拟dom(_render) -> 渲染页面(_update(_render)) -->
+<!-- vue会以组件为单位 为每个组件增加一个watcher 数据变化会调用vm._update(vm._render)更新视图 -->
